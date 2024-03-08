@@ -13,5 +13,10 @@
     "nuxt": "^3.10.3",
     "vue": "^3.4.21",
     "vue-router": "^4.3.0"
+  },
+  "devDependencies": {
+    "@nuxt/ui": "^2.14.2",
+    "@sidebase/nuxt-auth": "^0.7.0",
+    "nuxt-mongoose": "^1.0.5"
   }
 }

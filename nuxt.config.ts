@@ -3,4 +3,6 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   pages: true,
   srcDir: 'src/',
+  modules: ["@nuxt/ui", "@sidebase/nuxt-auth", "nuxt-mongoose"],
+  ui: {},
 })
