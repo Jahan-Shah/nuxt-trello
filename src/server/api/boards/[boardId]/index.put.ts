@@ -1,4 +1,4 @@
-import BoardSchema from "~/schemas/Board.schema"
+import BoardSchema from '~/schemas/Board.schema'
 
 export default defineEventHandler(async (event) => {
   const user = event.context.user
@@ -12,7 +12,7 @@ export default defineEventHandler(async (event) => {
     _id: boardId,
     owner: user._id,
   }, {
-    $set: body
+    $set: body,
   })
 
   return board

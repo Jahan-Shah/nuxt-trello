@@ -1,7 +1,7 @@
 <script lang="ts" setup>
-import SignupSchema from '~/schemas/Signup.schema';
+import type { z } from 'zod'
+import SignupSchema from '~/schemas/Signup.schema'
 import type { FormSubmitEvent } from '#ui/types'
-import type { z } from 'zod';
 
 const isLoading = ref(false)
 
@@ -19,7 +19,7 @@ async function handleSignUp(event: FormSubmitEvent<z.output<typeof SignupSchema>
     await $fetch('/api/auth/signup', {
       method: 'POST',
       body: JSON.stringify(event.data),
-      watch: false
+      watch: false,
     })
 
     toast.add({
@@ -31,81 +31,41 @@ async function handleSignUp(event: FormSubmitEvent<z.output<typeof SignupSchema>
     useRouter().push({
       name: 'auth-signin',
     })
-  } catch (e: any) {
+  }
+  catch (e: any) {
     toast.add({
       title: 'Failed to create account!',
       description: e.message || 'An error occurred while creating your account. Please try again later.',
     })
-  } finally {
+  }
+  finally {
     isLoading.value = false
   }
 }
 </script>
 
 <template>
-  <NuxtLayout
-    name="auth"
-    title="Create a free account"
-  >
-    <UForm
-      class="flex flex-col gap-4"
-      :state="formState"
-      :schema="SignupSchema"
-      @submit="handleSignUp"
-    >
-      <UFormGroup
-        name="name"
-        label="Name"
-      >
-        <UInput
-          v-model="formState.name"
-          placeholder="Enter your name"
-        />
+  <NuxtLayout name="auth" title="Create a free account">
+    <UForm class="flex flex-col gap-4" :state="formState" :schema="SignupSchema" @submit="handleSignUp">
+      <UFormGroup name="name" label="Name">
+        <UInput v-model="formState.name" placeholder="Enter your name" />
       </UFormGroup>
-      <UFormGroup
-        name="email"
-        label="Email"
-      >
-        <UInput
-          v-model="formState.email"
-          type="email"
-          placeholder="Enter your email"
-        />
+      <UFormGroup name="email" label="Email">
+        <UInput v-model="formState.email" type="email" placeholder="Enter your email" />
       </UFormGroup>
-      <UFormGroup
-        name="password"
-        label="Password"
-      >
-        <UInput
-          v-model="formState.password"
-          type="password"
-          placeholder="Enter your password"
-        />
+      <UFormGroup name="password" label="Password">
+        <UInput v-model="formState.password" type="password" placeholder="Enter your password" />
       </UFormGroup>
-      <UFormGroup
-        name="confirmPassword"
-        label="Confirm Password"
-      >
-        <UInput
-          v-model="formState.confirmPassword"
-          type="password"
-          placeholder="Enter your password again"
-        />
+      <UFormGroup name="confirmPassword" label="Confirm Password">
+        <UInput v-model="formState.confirmPassword" type="password" placeholder="Enter your password again" />
       </UFormGroup>
 
-      <UButton
-        :loading="isLoading"
-        type="submit"
-        block
-      >
+      <UButton :loading="isLoading" type="submit" block>
         Create Account
       </UButton>
-      <p class="text-center text-sm text-gray-600 dark:text-gray-400">
+      <p class="text-sm text-center text-gray-600 dark:text-gray-400">
         Already have an account?
-        <NuxtLink
-          to="/auth/signin"
-          class="text-white"
-        >
+        <NuxtLink to="/auth/signin" class="text-white">
           Sign in
         </NuxtLink>
       </p>

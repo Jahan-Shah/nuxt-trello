@@ -1,4 +1,4 @@
-import BoardSchema from "~/schemas/Board.schema"
+import BoardSchema from '~/schemas/Board.schema'
 
 export default defineEventHandler(async (event) => {
   const user = event.context.user
@@ -8,7 +8,7 @@ export default defineEventHandler(async (event) => {
 
   const board = await Board.create({
     ...body,
-    owner: user._id
+    owner: user._id,
   })
 
   return board

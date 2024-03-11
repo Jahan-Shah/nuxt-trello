@@ -32,20 +32,21 @@ async function handleSignOut() {
 
 <template>
   <div>
-    <header class="p-2 border-b dark:border-gray-700 bg-white dark:bg-gray-800">
+    <header class="p-2 bg-white border-b dark:border-gray-700 dark:bg-gray-800">
       <UContainer>
         <div class="flex justify-between">
           <NuxtLink to="/">
-            <!-- <Icon class="w-8 h-8" /> -->
+            <TheLogo class="w-8 h-8">
+              <div class="text-xl font-bold">
+                Nrello
+              </div>
+            </TheLogo>
           </NuxtLink>
-          <div class="inline-flex justify-end gap-4 items-center">
+          <div class="inline-flex items-center justify-end gap-4">
             <slot name="actions" />
             <ColorSwitcher />
             <UDropdown :items="dropdownItems">
-              <UIcon
-                name="i-heroicons-user-circle"
-                class="w-6 h-6"
-              />
+              <UIcon name="i-heroicons-user-circle" class="w-6 h-6" />
               <template #profile>
                 <div class="text-left truncate">
                   <p>Signed in as</p>

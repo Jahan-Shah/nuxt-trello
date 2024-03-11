@@ -6,15 +6,16 @@ export default defineNuxtConfig({
   modules: ['@nuxt/ui', '@sidebase/nuxt-auth', 'nuxt-mongoose'],
   runtimeConfig: {
     auth: {
-      secret: process.env.AUTH_SECRET,
-      origin: process.env.AUTH_ORIGIN
-    }
+      secret: '',
+      origin: '',
+    },
   },
   ui: {},
   auth: {
-    baseUrl: process.env.AUTH_ORIGIN,
+    /* eslint node/prefer-global/process: [error] */
+    baseURL: process.env.NUXT_AUTH_ORIGIN,
     provider: {
-      type: 'authjs'
-    }
-  }
+      type: 'authjs',
+    },
+  },
 })
