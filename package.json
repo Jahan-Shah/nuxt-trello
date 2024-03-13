@@ -24,6 +24,7 @@
   },
   "devDependencies": {
     "@antfu/eslint-config": "^2.8.0",
+    "@nuxt/image": "^1.4.0",
     "@nuxt/ui": "^2.14.2",
     "@sidebase/nuxt-auth": "^0.7.0",
     "@types/bcryptjs": "^2.4.6",

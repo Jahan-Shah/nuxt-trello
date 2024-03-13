@@ -3,11 +3,14 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   pages: true,
   srcDir: 'src/',
-  modules: ['@nuxt/ui', '@sidebase/nuxt-auth', 'nuxt-mongoose'],
+  modules: ['@nuxt/ui', '@sidebase/nuxt-auth', 'nuxt-mongoose', '@nuxt/image'],
   runtimeConfig: {
     auth: {
       secret: '',
       origin: '',
+    },
+    public: {
+      pixabayApiKey: '',
     },
   },
   ui: {},
