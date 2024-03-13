@@ -1,10 +1,11 @@
 import { Types } from 'mongoose'
 import type { Document, ObjectId } from 'mongoose'
+import type { ListDocument } from './List.model'
 import { defineMongooseModel } from '#nuxt/mongoose'
 
 export interface BoardDocument extends Document {
   name: string
-  list: string[]
+  lists: ObjectId[] | ListDocument[]
   owner: ObjectId
   coverImage: string
 }
@@ -14,7 +15,7 @@ export const Board = defineMongooseModel<BoardDocument>('Board', {
     type: String,
     default: 'Untitled Board',
   },
-  list: [
+  lists: [
     {
       type: Types.ObjectId,
       ref: 'List',

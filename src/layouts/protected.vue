@@ -51,7 +51,7 @@ async function handleSignOut() {
                 <div class="text-left truncate">
                   <p>Signed in as</p>
                   <p class="font-medium text-gray-900 dark:text-white">
-                    {{ data?.user?.email }}
+                    {{ data?.user?.name }}
                   </p>
                 </div>
               </template>
