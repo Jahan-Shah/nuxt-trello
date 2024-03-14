@@ -5,7 +5,7 @@ definePageMeta({
   middleware: 'auth',
 })
 
-const { data: boards, refresh } = useFetch<BoardDocument[]>('/api/boards')
+const { data: boards, refresh } = await useFetch<BoardDocument[]>('/api/boards')
 
 const showCreateBoard = ref(false)
 const selectedBoard = ref<BoardDocument | undefined>()
