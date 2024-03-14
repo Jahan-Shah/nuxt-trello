@@ -16,11 +16,12 @@
     "bcryptjs": "^2.4.3",
     "next-auth": "4.21.1",
     "nuxt": "^3.10.3",
+    "sortablejs": "^1.15.2",
+    "sortablejs-vue3": "^1.2.11",
     "stripe": "^14.20.0",
     "typescript": "^5.4.2",
     "vue": "^3.4.21",
-    "vue-router": "^4.3.0",
-    "vuedraggable": "^2.24.3"
+    "vue-router": "^4.3.0"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^2.8.0",
