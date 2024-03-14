@@ -45,7 +45,7 @@ const boardLink = computed(() => {
       </p>
       <div class="absolute top-0 w-full h-12 z-[1] bg-gradient-to-b from-black/90 to-transparent" />
     </NuxtLink>
-    <UDropdown :items="actions" class="absolute z-10 p-1 rounded-full top-2 right-4 hover:bg-white/20">
+    <UDropdown :items="actions" class="absolute z-10 p-1 rounded-full top-2 right-4 hover:bg-gray-200 dark:hover:bg-slate-700">
       <UIcon name="i-heroicons-cog-6-tooth" class="text-white" />
     </UDropdown>
   </div>
