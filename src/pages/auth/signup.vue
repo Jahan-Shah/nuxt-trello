@@ -42,6 +42,18 @@ async function handleSignUp(event: FormSubmitEvent<z.output<typeof SignupSchema>
     isLoading.value = false
   }
 }
+
+const showPassword = ref(false)
+const passwordType = computed(() => showPassword.value ? 'text' : 'password')
+function togglePassword() {
+  showPassword.value = !showPassword.value
+}
+
+const showConfirmPassword = ref(false)
+const confirmPasswordType = computed(() => showConfirmPassword.value ? 'text' : 'password')
+function toggleConfirmPassword() {
+  showConfirmPassword.value = !showConfirmPassword.value
+}
 </script>
 
 <template>
@@ -54,10 +66,28 @@ async function handleSignUp(event: FormSubmitEvent<z.output<typeof SignupSchema>
         <UInput v-model="formState.email" type="email" placeholder="Enter your email" />
       </UFormGroup>
       <UFormGroup name="password" label="Password">
-        <UInput v-model="formState.password" type="password" placeholder="Enter your password" />
+        <UInput v-model="formState.password" :type="passwordType" placeholder="Enter your password">
+          <template #trailing>
+            <div class="icons cursor-pointer z-[2] pointer-events-auto" @click="togglePassword">
+              <Transition name="slide-up" mode="out-in">
+                <UIcon v-if="showPassword" name="i-heroicons-eye" />
+                <UIcon v-else name="i-heroicons-eye-slash" />
+              </Transition>
+            </div>
+          </template>
+        </UInput>
       </UFormGroup>
       <UFormGroup name="confirmPassword" label="Confirm Password">
-        <UInput v-model="formState.confirmPassword" type="password" placeholder="Enter your password again" />
+        <UInput v-model="formState.confirmPassword" :type="confirmPasswordType" placeholder="Enter your password again">
+          <template #trailing>
+            <div class="icons cursor-pointer z-[2] pointer-events-auto" @click="toggleConfirmPassword">
+              <Transition name="slide-up" mode="out-in">
+                <UIcon v-if="showConfirmPassword" name="i-heroicons-eye" />
+                <UIcon v-else name="i-heroicons-eye-slash" />
+              </Transition>
+            </div>
+          </template>
+        </UInput>
       </UFormGroup>
 
       <UButton :loading="isLoading" type="submit" block>
@@ -72,3 +102,20 @@ async function handleSignUp(event: FormSubmitEvent<z.output<typeof SignupSchema>
     </UForm>
   </NuxtLayout>
 </template>
+
+<style>
+.slide-up-enter-active,
+.slide-up-leave-active {
+  transition: all 50ms ease-out;
+}
+
+.slide-up-enter-from {
+  opacity: 0;
+  transform: translateY(5px);
+}
+
+.slide-up-leave-to {
+  opacity: 0;
+  transform: translateY(-5px);
+}
+</style>

@@ -31,6 +31,12 @@ async function handleSignIn(event: FormSubmitEvent<z.output<typeof SigninSchema>
     isLoading.value = false
   }
 }
+
+const showPassword = ref(false)
+const passwordType = computed(() => showPassword.value ? 'text' : 'password')
+function togglePassword() {
+  showPassword.value = !showPassword.value
+}
 </script>
 
 <template>
@@ -40,7 +46,16 @@ async function handleSignIn(event: FormSubmitEvent<z.output<typeof SigninSchema>
         <UInput v-model="formState.email" type="email" placeholder="Enter your email" />
       </UFormGroup>
       <UFormGroup name="password" label="Password">
-        <UInput v-model="formState.password" trailing type="password" placeholder="Enter your password" />
+        <UInput v-model="formState.password" :type="passwordType" placeholder="Enter your password">
+          <template #trailing>
+            <div class="icons cursor-pointer z-[2] pointer-events-auto" @click="togglePassword">
+              <Transition name="slide-up" mode="out-in">
+                <UIcon v-if="showPassword" name="i-heroicons-eye" />
+                <UIcon v-else name="i-heroicons-eye-slash" />
+              </Transition>
+            </div>
+          </template>
+        </UInput>
       </UFormGroup>
 
       <UButton :loading="isLoading" type="submit" block>
@@ -57,23 +72,18 @@ async function handleSignIn(event: FormSubmitEvent<z.output<typeof SigninSchema>
 </template>
 
 <style>
-.right {
-  background: linear-gradient(-45deg, #22c55e, #10b981, #84cc16, #23d5ab);
-  background-size: 400% 400%;
-  animation: gradient 15s ease infinite;
+.slide-up-enter-active,
+.slide-up-leave-active {
+  transition: all 50ms ease-out;
 }
 
-@keyframes gradient {
-  0% {
-    background-position: 0% 50%;
-  }
+.slide-up-enter-from {
+  opacity: 0;
+  transform: translateY(5px);
+}
 
-  50% {
-    background-position: 100% 50%;
-  }
-
-  100% {
-    background-position: 0% 50%;
-  }
+.slide-up-leave-to {
+  opacity: 0;
+  transform: translateY(-5px);
 }
 </style>
